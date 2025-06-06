@@ -1,55 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   inter.c                                            :+:      :+:    :+:   */
+/*   epur_str.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armkhach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/06 11:51:29 by armkhach          #+#    #+#             */
-/*   Updated: 2025/06/06 11:58:18 by armkhach         ###   ########.fr       */
+/*   Created: 2025/05/27 16:48:42 by armkhach          #+#    #+#             */
+/*   Updated: 2025/05/27 17:32:12 by armkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int	check_doubles(char *str, char c, int pos)
+int main(int	argc, char	**argv)
 {
 	int	i = 0;
+	int	flag = 0;
 
-	while (i < pos)
+	if (argc == 2)
 	{
-		if (str[i] == c)
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int	main(int argc, char **argv)
-{
-	int	i = 0;
-	int	j;
-
-	if (argc == 3)
-	{
+		while (argv[1][i] == ' ' || argv[1][i] == '\t')
+			i++;
 		while (argv[1][i] != '\0')
 		{
-			j = 0;
-			while (argv[2][j] != '\0')
+			if (argv[1][i] == ' ' || argv[1][i] == '\t') 
+				flag = 1;
+			else
 			{
-				if (argv[1][i] == argv[2][j])
-				{
-					if (check_doubles(argv[1], argv[1][i], i))
-					{
-						write(1, &argv[1][i], 1);
-						break ;
-					}
-				}
-				j++;
+				if (flag)
+					write (1, " ", 1);
+				flag = 0;
+				write (1, &argv[1][i], 1);
 			}
 			i++;
 		}
 	}
-	write(1, "\n", 1);
+	write (1, "\n", 1);
 	return (0);
 }

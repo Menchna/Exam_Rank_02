@@ -1,55 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   inter.c                                            :+:      :+:    :+:   */
+/*   str_capitalizer.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armkhach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/06 11:51:29 by armkhach          #+#    #+#             */
-/*   Updated: 2025/06/06 11:58:18 by armkhach         ###   ########.fr       */
+/*   Created: 2025/05/22 12:54:10 by armkhach          #+#    #+#             */
+/*   Updated: 2025/05/22 13:36:51 by armkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int	check_doubles(char *str, char c, int pos)
+void	capitalizer(char	*str)
 {
 	int	i = 0;
 
-	while (i < pos)
+	while (str[i])
 	{
-		if (str[i] == c)
-			return (0);
+		if (str[i] >= 'A' && str[i] <= 'Z')
+			str[i] += 32;
 		i++;
 	}
-	return (1);
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[0] >= 'a' && str[0] <= 'z')
+			str[0] -= 32;
+		if ((str[i] >= 'a' && str[i] <= 'z') && (str[i - 1] == ' ' || str[i - 1] == '\t'))
+			str[i] -= 32;
+		write (1, &str[i], 1);
+		i++;
+	}
 }
 
-int	main(int argc, char **argv)
+int main(int	argc, char	**argv)
 {
-	int	i = 0;
-	int	j;
+	int	i = 1;
 
-	if (argc == 3)
+	if (argc > 1)
 	{
-		while (argv[1][i] != '\0')
+		while (i < argc)
 		{
-			j = 0;
-			while (argv[2][j] != '\0')
-			{
-				if (argv[1][i] == argv[2][j])
-				{
-					if (check_doubles(argv[1], argv[1][i], i))
-					{
-						write(1, &argv[1][i], 1);
-						break ;
-					}
-				}
-				j++;
-			}
+			capitalizer(argv[i]);
+			write (1, "\n", 1);
 			i++;
 		}
 	}
-	write(1, "\n", 1);
+	else
+		write (1, "\n", 1);
 	return (0);
 }

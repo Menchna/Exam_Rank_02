@@ -1,55 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   inter.c                                            :+:      :+:    :+:   */
+/*   snake_to_camel.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armkhach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/06 11:51:29 by armkhach          #+#    #+#             */
-/*   Updated: 2025/06/06 11:58:18 by armkhach         ###   ########.fr       */
+/*   Created: 2025/05/19 12:29:14 by armkhach          #+#    #+#             */
+/*   Updated: 2025/05/19 13:02:39 by armkhach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int	check_doubles(char *str, char c, int pos)
+char	ft_toupper(char	c)
 {
-	int	i = 0;
-
-	while (i < pos)
-	{
-		if (str[i] == c)
-			return (0);
-		i++;
-	}
-	return (1);
+	if (c >= 'a' && c <= 'z')
+		c -= 32;
+	return (c);
 }
 
-int	main(int argc, char **argv)
+int main(int	argc, char	**argv)
 {
 	int	i = 0;
-	int	j;
+	char	c;
 
-	if (argc == 3)
+	if (argc == 2)
 	{
 		while (argv[1][i] != '\0')
 		{
-			j = 0;
-			while (argv[2][j] != '\0')
+			if (argv[1][i] == '_')
 			{
-				if (argv[1][i] == argv[2][j])
-				{
-					if (check_doubles(argv[1], argv[1][i], i))
-					{
-						write(1, &argv[1][i], 1);
-						break ;
-					}
-				}
-				j++;
+				c = ft_toupper(argv[1][++i]);
+				write (1, &c, 1);
 			}
+			else
+				write (1, &argv[1][i], 1);
 			i++;
 		}
 	}
-	write(1, "\n", 1);
+	write (1, "\n", 1);
 	return (0);
 }
