@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	is_power_of_2(int	n)
+int	is_power_of_2(int	n) //int instead of unsigned int
 {
 	int	i = 1;
 
