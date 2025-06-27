@@ -12,11 +12,11 @@
 
 #include <unistd.h>
 
-int	check_doubles(char *str, char c, int pos)
+int	check_doubles(char *str, char c, int till)
 {
 	int	i = 0;
 
-	while (i < pos)
+	while (i < till)
 	{
 		if (str[i] == c)
 			return (0);
@@ -28,7 +28,7 @@ int	check_doubles(char *str, char c, int pos)
 int	main(int argc, char **argv)
 {
 	int	i = 0;
-	int	j;
+	int	j = 0;
 
 	if (argc == 3)
 	{
