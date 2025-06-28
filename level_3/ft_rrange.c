@@ -19,7 +19,6 @@ int	ft_abs(int	n)
 	return (n);
 }
 
-
 int	*ft_rrange(int	start, int	end)
 {
 	int	i;
